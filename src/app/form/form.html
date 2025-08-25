@@ -1,0 +1,10 @@
+<h2>The caste of psychos (programmers)</h2>
+<form [formGroup]="singupForm" (ngSubmit)="register()">
+  <input type="text" placeholder="Firstname" id="Firstname" formControlName="Firstname">
+  <input type="text" placeholder="Lastname" formControlName="Lastname">
+  <input type="email" placeholder="Email" formControlName="Email">
+  <input type="password" placeholder="Password" formControlName="Password">
+  <input type="password" placeholder="Password confirm" formControlName="PasswordConfirm">
+  <input class="born" type="date" formControlName="Born">
+  <button type="submit" [disabled]="singupForm.invalid">Submit</button>
+</form>
