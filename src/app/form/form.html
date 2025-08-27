@@ -1,10 +1,41 @@
 <h2>The caste of psychos (programmers)</h2>
-<form [formGroup]="singupForm" (ngSubmit)="register()">
-  <input type="text" placeholder="Firstname" id="Firstname" formControlName="Firstname">
-  <input type="text" placeholder="Lastname" formControlName="Lastname">
-  <input type="email" placeholder="Email" formControlName="Email">
-  <input type="password" placeholder="Password" formControlName="Password">
-  <input type="password" placeholder="Password confirm" formControlName="PasswordConfirm">
-  <input class="born" type="date" formControlName="Born">
-  <button type="submit" [disabled]="singupForm.invalid">Submit</button>
+<form [formGroup]="signupForm" (ngSubmit)="register()">
+  <div>
+    <input type="text" placeholder="Firstname" formControlName="Firstname">
+    @if (signupForm.get('Firstname')?.invalid && signupForm.get('Firstname')?.touched) {
+      <small>Firstname повинне бути від 2 до 50 літер</small>
+    }
+  </div>
+  <div>
+    <input type="text" placeholder="Lastname" formControlName="Lastname">
+    @if (signupForm.get('Lastname')?.invalid && signupForm.get('Lastname')?.touched) {
+      <small>Lasttname повинне бути від 2 до 50 літер</small>
+    }
+  </div>
+  <div>
+    <input type="email" placeholder="Email" formControlName="Email">
+    @if (signupForm.get('Email')?.invalid && signupForm.get('Email')?.touched) {
+      <small>Не вірно введений Email</small>
+    }
+  </div>
+  <div>
+    <input class="password" type="password" placeholder="Password" formControlName="Password">
+    @if (signupForm.get('Password')?.invalid && signupForm.get('Password')?.touched) {
+      <small>Password повинен складати з літер і цифр, мінімум 8 символів</small>
+    }
+  </div>
+  <div>
+    <input type="password" placeholder="Password confirm" formControlName="PasswordConfirm">
+    @if (signupForm.hasError('password_valid') && signupForm.get('PasswordConfirm')?.touched) {
+      <small>Password не співпадає</small>
+    }
+  </div>
+  <div>
+    <input class="born" type="date" formControlName="Born">
+    @if (signupForm.get('Born')?.invalid && signupForm.get('Born')?.touched) {
+      <small>Щоб увійти вам повино бути прийнані 14 років</small>
+
+    }
+  </div>
+    <button type="submit" [disabled]="signupForm.invalid">Submit</button>
 </form>
